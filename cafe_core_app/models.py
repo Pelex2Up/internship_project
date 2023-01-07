@@ -11,7 +11,7 @@ class Meal(models.Model):
         HOT_MEALS = 'Горячие блюда'
         DRINK = 'Напитки'
         DESSERTS = 'Десерты'
-        NO_TYPE = 'Без типа'
+        NO_TYPE = 'NO_TYPE'
 
     meal_type = models.CharField(
         max_length=20,

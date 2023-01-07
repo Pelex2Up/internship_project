@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    {{ meal.name }}
+{% endblock %}
+
+{% block content %}
+    {% if meal %}
+        <p><b>Блюдо: </b>{{ meal.name }}</p>
+        <p><b>Описание блюда: </b>{{ meal.description }}</p>
+        <p><b>Вес блюда: </b>{{ meal.size }} грамм</p>
+        <p><b>Цена: </b>{{ meal.price }} BYN</p>
+    {% else %}
+        Блюда не существует
+    {% endif %}
+{% endblock %}

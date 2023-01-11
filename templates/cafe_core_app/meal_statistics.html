@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    Топ-3 блюда по количеству нажатий
+{% endblock %}
+
+{% block content %}
+<br>
+    <h1>ТОП-3 Блюд по количеству просмотров</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+            {% for meal in top3_meal %}
+                <p>Блюдо: {{ meal }}</p>
+            {% endfor %}
+        </div>
+        <div class="col-2">
+            {% for click in top3_click %}
+            <p>Количество кликов: {{ click }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

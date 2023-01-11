@@ -10,6 +10,7 @@
         <p><b>Описание блюда: </b>{{ meal.description }}</p>
         <p><b>Вес блюда: </b>{{ meal.size }} грамм</p>
         <p><b>Цена: </b>{{ meal.price }} BYN</p>
+        <a class="btn btn-primary btn-lg" role="button" href="{% url 'cafe_core_app:meal_click_stat' meal.id %}">Статистика переходов на данное блюдо</a>
     {% else %}
         Блюда не существует
     {% endif %}

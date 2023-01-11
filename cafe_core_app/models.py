@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -23,3 +24,9 @@ class Meal(models.Model):
 class MealClick(models.Model):
     meal = models.ForeignKey(Meal, on_delete=models.DO_NOTHING)
     click_date = models.DateTimeField('Дата клика', auto_now_add=True)
+
+
+class UserClick(models.Model):
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    click_date = models.DateTimeField('Дата клика', auto_now_add=True)
+    category = models.CharField('Категория', max_length=50)

@@ -5,10 +5,12 @@
 {% endblock %}
 
 {% block content %}
+    <h1>Меню:</h1>
     {% if meals_categories %}
         {% for category in meals_categories %}
-            <h2><a href="{% url 'cafe_core_app:meal_category' category.0 %}">{{ category.0 }}</a></h2>
+            <h2><a class="btn btn-primary btn-lg" role="button" href="{% url 'cafe_core_app:meal_category' category.0 %}">{{ category.0 }}</a></h2>
         {% endfor %}
+        <h1><a class="btn btn-secondary btn-lg" role="button" href="{% url 'cafe_core_app:click_statistics' %}">Топ-3 блюд по количеству нажатий</a></h1>
     {% else %}
         Нет категорий блюд
     {% endif %}

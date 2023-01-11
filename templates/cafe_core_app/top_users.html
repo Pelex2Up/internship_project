@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    Топ-10 пользователей, по количеству посещений категории "{{ meal_type }}"
+{% endblock %}
+
+{% block content %}
+<br>
+    <h2 style="text-align: center">Топ-10 пользователей, по количеству посещений категории
+        "{{ meal_type }}"</h2>
+<div class="container">
+    <div class="row" style="text-align: left">
+        {% for el in top_users %}
+            {% if el.0 != 0 %}
+                <h4 style="color: darkorange">Пользователь: {{ el.1 }}, количество посещений: {{ el.0 }}</h4>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

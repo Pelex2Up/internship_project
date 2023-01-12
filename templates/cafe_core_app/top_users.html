@@ -12,7 +12,7 @@
     <div class="row" style="text-align: left">
         {% for el in top_users %}
             {% if el.0 != 0 %}
-                <h4 style="color: darkorange">Пользователь: {{ el.1 }}, количество посещений: {{ el.0 }}</h4>
+                <h4 style="color: darkorange; text-align: center;">Пользователь: {{ el.1 }}, количество посещений: {{ el.0 }}</h4>
             {% endif %}
         {% endfor %}
     </div>

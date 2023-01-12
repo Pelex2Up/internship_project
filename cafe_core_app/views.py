@@ -16,8 +16,9 @@ def menu(request):
 
 def meal_category(request, meal_category):
     meal_by_category = Meal.objects.filter(meal_type=meal_category)
-    user = User.objects.get(id=request.user.id)
-    user.userclick_set.create(click_date=timezone.now(), category=meal_category)
+    if request.user.is_authenticated:
+        user = User.objects.get(id=request.user.id)
+        user.userclick_set.create(click_date=timezone.now(), category=meal_category)
     return render(request, 'cafe_core_app/meals.html', {'meals': meal_by_category, 'meal_category': meal_category})
 
 
@@ -31,16 +32,16 @@ def top_meals(request):
     meal = Meal.objects.all()
     total_clicks = {}
 
-    for i in range(1, meal.count() + 1):
-        clicks = MealClick.objects.filter(meal_id=i).count()
-        meal_name = Meal.objects.get(id=i).name
+    for meal_object in meal:
+        clicks = MealClick.objects.filter(meal_id=meal_object.id).count()
+        meal_name = meal_object.name
         total_clicks.update({meal_name: clicks})
 
-    top_meals = sorted(total_clicks, key=total_clicks.get)[::-1]
+    top3_meals = sorted(total_clicks, key=total_clicks.get)[::-1]
     top_clicks = sorted(total_clicks.values())[::-1]
 
     context = {
-        'top3_meal': top_meals[:3],
+        'top3_meal': top3_meals[:3],
         'top3_click': top_clicks[:3]
     }
 

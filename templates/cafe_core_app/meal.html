@@ -6,11 +6,38 @@
 
 {% block content %}
     {% if meal %}
-        <p><b>Блюдо: </b>{{ meal.name }}</p>
-        <p><b>Описание блюда: </b>{{ meal.description }}</p>
-        <p><b>Вес блюда: </b>{{ meal.size }} грамм</p>
-        <p><b>Цена: </b>{{ meal.price }} BYN</p>
-        <a class="btn btn-primary btn-lg" role="button" href="{% url 'cafe_core_app:meal_click_stat' meal.id %}">Статистика переходов на данное блюдо</a>
+        <div class="row" style="align-content: center">
+            <div class="col-4">
+                <p><b>Блюдо: </b>{{ meal.name }}</p>
+                <p><b>Описание блюда: </b>{{ meal.description }}</p>
+                <p><b>Вес блюда: </b>{{ meal.size }} грамм</p>
+                <p><b>Цена: </b>{{ meal.price }} BYN</p>
+                <a class="btn btn-primary btn-lg" role="button" href="{% url 'cafe_core_app:meal_click_stat' meal.id %}">Статистика переходов на данное блюдо</a>
+            </div>
+            <div class="col-md-4">
+                {% if meal.images.all %}
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    {% for object in meal.images.all %}
+                    <div class="carousel-item active">
+                      <img src="{{ object.image.url }}" class="d-block w-100" alt="...">
+                    </div>
+                    {% endfor %}
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                {% else %}
+                    <img style="width: 300px; height: 300px;" src="/media/images/no-photo.png">
+                {% endif %}
+            </div>
+            </div>
+        </div>
     {% else %}
         Блюда не существует
     {% endif %}
